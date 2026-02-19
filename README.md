@@ -50,3 +50,7 @@ Open the config screen from:
 ```
 
 The built JAR will appear in `build/libs/`
+
+## License
+
+MIT License
