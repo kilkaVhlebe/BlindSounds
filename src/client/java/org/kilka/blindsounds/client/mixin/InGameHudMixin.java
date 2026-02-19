@@ -32,7 +32,7 @@ public class InGameHudMixin {
 
         int centerX = screenWidth / 2;
         int centerY = screenHeight / 2;
-        int radius = 80;  // Радиус компаса
+        int radius = 80;
 
         for (LivingEntity entity : SoundIndicatorManager.getActive().keySet()) {
             if (!entity.isAlive()) continue;
@@ -41,7 +41,6 @@ public class InGameHudMixin {
             Vec3d entityPos = entity.getEntityPos();
             Vec3d relativePos = entityPos.subtract(cameraPos);
 
-            // Угол до entity
             float angleToEntity = (float) Math.toDegrees(Math.atan2(-relativePos.x, relativePos.z));
             float diff = angleDifference(camera.getYaw(), angleToEntity+270);
 
@@ -53,8 +52,6 @@ public class InGameHudMixin {
             x = centerX + (int)(radius * Math.cos(diffRad));
             y = centerY + (int)(radius * Math.sin(diffRad));
 
-            // Рисуем квадрат 10x10 (центрированный)
-            //context.fill(x - 5, y - 5, x + 5, y + 5, 0xFFFFFFFF);
             context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, warningSing, 16, 16, 0, 0, x, y, 16, 16);
         }
     }
