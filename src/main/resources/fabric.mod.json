@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "blindsounds",
+  "version": "${version}",
+  "name": "BlindSounds",
+  "description": "Atmospheric experience of blinded person",
+  "authors": ["Kilka_v_HJIebe, Danrus110_"],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/blindsounds/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-datagen": [
+      "org.kilka.blindsounds.client.BlindsoundsDataGenerator"
+    ],
+    "client": [
+      "org.kilka.blindsounds.client.BlindsoundsClient"
+    ],
+    "main": [
+      "org.kilka.blindsounds.Blindsounds"
+    ],
+    "modmenu": [
+      "org.kilka.blindsounds.client.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "blindsounds.mixins.json",
+    {
+      "config": "blindsounds.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
