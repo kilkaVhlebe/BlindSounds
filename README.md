@@ -36,12 +36,14 @@ Open the config screen from:
 
 ### Options
 
-| Setting | Description |
-|---------|-------------|
-| Mod enabled | Toggle all mod features |
-| Enable mode fog | Toggle dense fog |
-| Hide mobs | Toggle mob visibility |
-| Sound marks enabled | Toggle directional sound indicators |
+| Setting               | Description                              |
+|-----------------------|------------------------------------------|
+| Mod enabled           | Toggle all mod features                  |
+| Enable mode fog       | Toggle dense fog                         |
+| Hide mobs             | Toggle mob visibility                    |
+| Sound marks enabled   | Toggle directional sound indicators      |
+| Interval view radius  | How many times block view radius repeats |
+| Block view fog radius | How far you see in one interval          |
 
 ## Building from source
 

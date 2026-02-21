@@ -15,6 +15,6 @@ public class FogRendererMixin {
         if(!Config.get().modEnabled || !Config.get().fogEnabled) {
             return original;
         }
-        return BlindsoundsClient.blockView;
+        return Config.get().blockFogRadius;
     }
 }

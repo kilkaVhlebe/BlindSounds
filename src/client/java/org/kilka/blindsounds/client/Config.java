@@ -1,11 +1,11 @@
 package org.kilka.blindsounds.client;
 
 import com.google.gson.GsonBuilder;
-import dev.isxander.yacl3.api.ConfigCategory;
-import dev.isxander.yacl3.api.Option;
-import dev.isxander.yacl3.api.OptionGroup;
-import dev.isxander.yacl3.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.api.*;
+import dev.isxander.yacl3.api.controller.DoubleFieldControllerBuilder;
+import dev.isxander.yacl3.api.controller.LongFieldControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
+import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
@@ -47,7 +47,7 @@ public class Config {
                 .category(ConfigCategory.createBuilder()
                         .name(Text.literal("Settings"))
                         .group(OptionGroup.createBuilder()
-                                .name(Text.literal("general"))
+                                .name(Text.literal("General"))
                                 .option(Option.<Boolean>createBuilder()
                                         .name(Text.literal("Mod enabled"))
                                         .binding(
@@ -76,6 +76,52 @@ public class Config {
                                         )
                                         .controller(TickBoxControllerBuilder::create)
                                         .build())
+                                .option(Option.<Integer>createBuilder()
+                                        .name(Text.literal("Interval view radius"))
+                                        .description(
+                                                OptionDescription.createBuilder()
+                                                        .text(Text.literal(
+                                                                "How many times \"Block fog view radius\" will repeat.\n" +
+                                                                "Exemple: \"Block fog view radius\" - 3, \"Interval view radius\" - 2, final view radius - 6 blocks"))
+                                                        .build())
+                                        .binding(
+                                                1, () -> Config.get().chunkFogRadius, newVal -> Config.get().chunkFogRadius = newVal
+                                        )
+                                        .controller(IntegerFieldControllerBuilder::create)
+                                        .build())
+                                .option(Option.<Integer>createBuilder()
+                                        .name(Text.literal("Block fog view radius"))
+                                        .description(
+                                                OptionDescription.createBuilder()
+                                                        .text(Text.literal("How many block you see in chunk"))
+                                                .build())
+                                        .binding(
+                                                3, () -> Config.get().blockFogRadius, newVal -> Config.get().blockFogRadius = newVal
+                                        )
+                                        .controller(IntegerFieldControllerBuilder::create)
+                                        .build())
+                                .option(Option.<Double>createBuilder()
+                                        .name(Text.literal("Sound markers radius"))
+                                        .description(
+                                                OptionDescription.createBuilder()
+                                                        .text(Text.literal("Radius from you where mob sound will trigger sound marker"))
+                                                        .build())
+                                        .binding(
+                                                10.0, () -> Config.get().soundMarkersReaction, newVal -> Config.get().soundMarkersReaction = newVal
+                                        )
+                                        .controller(DoubleFieldControllerBuilder::create)
+                                        .build())
+                                .option(Option.<Long>createBuilder()
+                                        .name(Text.literal("Sound markers visibility duration(milliseconds)"))
+                                        .description(
+                                                OptionDescription.createBuilder()
+                                                        .text(Text.literal("How long sound marker will visible in milliseconds"))
+                                                        .build())
+                                        .binding(
+                                                (long) 1000, () -> Config.get().soundMarkerDuration, newVal -> Config.get().soundMarkerDuration = newVal
+                                        )
+                                        .controller(LongFieldControllerBuilder::create)
+                                        .build())
                                 .build())
                         .build())
                 .save(Config::save)
@@ -94,4 +140,16 @@ public class Config {
 
     @SerialEntry
     public boolean soundMarksEnabled = true;
+
+    @SerialEntry
+    public int chunkFogRadius = 1;
+
+    @SerialEntry
+    public int blockFogRadius = 3;
+
+    @SerialEntry
+    public double soundMarkersReaction = 10.0;
+
+    @SerialEntry
+    public long soundMarkerDuration = 1000;
 }

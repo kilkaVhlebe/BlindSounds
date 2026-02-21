@@ -9,8 +9,6 @@ public class BlindsoundsClient implements ClientModInitializer {
     public static String MOD_ID = "blindsounds";
 
     public static float darkness = 2.5f;
-    public static int blockView = 3;
-    public static int chunkView = 1;
 
 
     @Override

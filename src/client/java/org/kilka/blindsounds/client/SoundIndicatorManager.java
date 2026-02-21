@@ -7,14 +7,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SoundIndicatorManager {
     private static final Map<LivingEntity, Long> INDICATORS = new ConcurrentHashMap<>();
-    private static final long DURATION_MS = 1000;
+    private static final long DURATION_MS = Config.get().soundMarkerDuration;
     public static void add(LivingEntity entity) {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == null) return;
 
-        // Проверка расстояния (10 блоков = 10.0)
         double distance = client.player.getEntityPos().distanceTo(entity.getEntityPos());
-        if (distance > 10.0) return;
+        if (distance > Config.get().soundMarkersReaction) return;
 
         INDICATORS.put(entity, System.currentTimeMillis() + DURATION_MS);
     }

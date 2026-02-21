@@ -19,7 +19,6 @@ public class LivingEnitityMixin {
         MinecraftClient client = MinecraftClient.getInstance();
 
         if (client.player == null || client.world == null) return;
-        if (entity.equals(client.player)) return;
         if(!Config.get().modEnabled || !Config.get().mobsEnabled) return;
 
         SoundIndicatorManager.add(entity);

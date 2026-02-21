@@ -25,6 +25,6 @@ public class GameRendererMinix {
         if(!Config.get().modEnabled || !Config.get().fogEnabled) {
             return original.call(instance, camera, viewDistance, renderTickCounter, f, clientWorld);
         }
-        return original.call(instance, camera, BlindsoundsClient.chunkView, renderTickCounter, BlindsoundsClient.darkness, clientWorld);
+        return original.call(instance, camera, Config.get().chunkFogRadius, renderTickCounter, BlindsoundsClient.darkness, clientWorld);
     }
 }
