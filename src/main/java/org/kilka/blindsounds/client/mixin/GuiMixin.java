@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Gui.class)
 
 public class GuiMixin {
-    @Inject(method = "render", at = @At("TAIL"))
+    @Inject(method = "extractCrosshair", at = @At("HEAD"))
     private void onRender(GuiGraphicsExtractor context, DeltaTracker tickCounter, CallbackInfo ci) {
         if(!Config.get().modEnabled || !Config.get().soundMarksEnabled) return;
 
